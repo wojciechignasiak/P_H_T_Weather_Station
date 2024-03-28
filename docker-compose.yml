@@ -1,0 +1,131 @@
+version: '3'
+
+networks:
+  backend-network:
+    name: backend-network
+    driver: bridge
+
+volumes:
+  postgres-volume:
+  influx-volume:
+
+services:
+######################FastAPI SERVICES - Beginning###########################
+
+  pht_backend:
+    container_name: pht_backend
+    build: ./pht_backend
+    image: ghcr.io/wojciechignasiak/pht_backend:0.0.1
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - INFLUX_HOST=${INFLUX_HOST}
+      - INFLUX_PORT=${INFLUX_PORT}
+      - INFLUX_TOKEN=${INFLUX_TOKEN}
+      - INFLUX_BUCKET_NAME=${INFLUX_BUCKET_NAME}
+      - INFLUX_ORG_NAME=${INFLUX_ORG_NAME}
+    ports:
+      - 8081:80
+    expose:
+      - 80
+    networks:
+      - backend-network
+    restart: always
+    volumes:
+      - ./pht_backend:/usr/src/pht_backend/
+    depends_on:
+      - postgresql
+      - influxdb
+
+######################FastAPI SERVICES - End###########################
+
+######################Python SERVICES - Beginning###########################
+  mqtt_bridge:
+    build: ./mqtt_bridge
+    container_name: mqtt_bridge
+    restart: always
+    environment:
+      - MQTT_BROKER_HOST=${MQTT_BROKER_HOST}
+      - MQTT_BROKER_PORT=${MQTT_BROKER_PORT}
+      - INFLUX_HOST=${INFLUX_HOST}
+      - INFLUX_PORT=${INFLUX_PORT}
+      - INFLUX_TOKEN=${INFLUX_TOKEN}
+      - INFLUX_BUCKET_NAME=${INFLUX_BUCKET_NAME}
+      - INFLUX_ORG_NAME=${INFLUX_ORG_NAME}
+    ports:
+      - 8082:80
+    expose:
+      - 80
+    networks:
+      - backend-network
+    volumes:
+      - ./mqtt_bridge:/usr/src/mqtt_bridge/
+    depends_on:
+      - mqtt
+      - influxdb
+
+######################Python SERVICES - Beginning###########################
+
+######################MQTT SERVICES - Beginning###########################
+
+  mqtt:
+    image: toke/mosquitto
+    container_name: mqtt
+    restart: always
+    ports:
+      - 1883:1883
+    expose:
+      - 1883
+    networks:
+      - backend-network
+
+######################MQTT SERVICES - End###########################
+
+######################PostgreSQL - Beginning###########################
+
+  postgresql:
+    container_name: postgresql
+    image: postgres:15.4-alpine
+    ports:
+      - 5433:5432
+    expose:
+      - 5432
+    networks:
+      - backend-network
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: always
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+      - "/etc/localtime:/etc/localtime:ro"
+
+######################PostgreSQL - End###########################
+
+######################InfluxDB - Beginning###########################
+
+  influxdb:
+      image: influxdb:2.7-alpine
+      container_name: influxdb
+      restart: always
+      volumes:
+        - influx-volume:/.influxdb2
+      ports:
+        - "8086:8086"
+      expose:
+        - 8086
+      networks:
+      - backend-network
+      environment:
+        - DOCKER_INFLUXDB_INIT_MODE=${INFLUX_INIT_MODE}
+        - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUX_USERNAME}
+        - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUX_PASSWORD}
+        - DOCKER_INFLUXDB_INIT_ORG=${INFLUX_ORG_NAME}
+        - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUX_BUCKET_NAME}
+        - TZ=${INFLUX_TIME_ZONE}
+
+######################InfluxDB - End###########################
