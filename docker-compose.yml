@@ -10,6 +10,25 @@ volumes:
   influx-volume:
 
 services:
+
+######################Frontend App - Beginning###########################
+
+  pht_frontend:
+    container_name: PHT_Frontend_${FRONTEND_APP_ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile.${FRONTEND_APP_ENV}
+    ports:
+      - 3000:3000
+    networks:
+      - backend-network
+    volumes:
+      - .pht_frontend/src:/frontend_app/src
+    environment:
+      - NODE_ENV=${FRONTEND_APP_ENV}
+
+######################Frontend App - End###########################
+
 ######################FastAPI SERVICES - Beginning###########################
 
   pht_backend:

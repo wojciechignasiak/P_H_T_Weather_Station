@@ -1,0 +1,152 @@
+.main-page-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    color: #fff;
+    font-weight: 100;
+    .main-page-content{
+        h1{
+            text-transform: uppercase;
+            font-size: 72px;
+            font-weight: 800;
+            margin:25px 0px;
+        }
+        h2{
+            font-size: 36px;
+            font-weight: 200;
+            margin:0px 0px 25px;
+        }
+        .city-select-control{
+            width: 100%;
+            margin: 0px 0px 30px 0px;
+            .city-select-label{
+                color: #fff;
+                font-size: 24px;
+                opacity: 100%;
+                &.MuiInputLabel-shrink{
+                    opacity: 25%;
+                }
+            }
+            .city-select{
+                color: #fff;
+                font-weight: 200;
+                font-size: 24px;
+                
+                &::before{
+                    border-color: #fff;
+                }
+                &::after{
+                    border-color: #fff;
+                }
+                &:hover{
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+                .MuiSvgIcon-root{
+                    color: #fff;
+                } 
+            }
+        }
+        .check-weather-btn-wrapper{
+            display: flex;
+            justify-content: center;
+            .check-weather-btn{
+                padding-left: 50px;
+                padding-right: 50px;
+                color: #fff;
+                border-color: #fff;
+                font-size: 32px;
+                border-radius: 50px;
+                &:hover{
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+                &:disabled{
+                    opacity: 25%;
+                }
+            }
+        }   
+    }
+}
+@media (max-width:480px ) {
+    .main-page-wrapper{
+        padding: 10px;
+        .main-page-content{
+            h1{
+                font-size: 24px;
+                margin: 10px 0px;
+            }
+            h2{
+                font-size: 16px;
+            }
+            .city-select-control{
+                .city-select-label{
+                    font-size: 14px;
+                }
+                .city-select{
+                    font-size: 14px;
+                }
+            }
+            .check-weather-btn-wrapper{
+                .check-weather-btn{
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+@media (min-width:481px ) AND (max-width: 768px) {
+    .main-page-wrapper{
+        padding: 20px;
+        .main-page-content{
+            h1{
+                font-size: 32px;
+                margin: 10px 0px;
+            }
+            h2{
+                font-size: 20px;
+            }
+            .city-select-control{
+                .city-select-label{
+                    font-size: 18px;
+                }
+                .city-select{
+                    font-size: 18px;
+                }
+            }
+            .check-weather-btn-wrapper{
+                .check-weather-btn{
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+@media (min-width:769px ) AND (max-width: 1024px) {
+    .main-page-wrapper{
+        padding: 50px;
+        .main-page-content{
+            h1{
+                font-size: 48px;
+                margin: 10px 0px;
+            }
+            h2{
+                font-size: 30px;
+            }
+            .city-select-control{
+                .city-select-label{
+                    font-size: 24px;
+                }
+                .city-select{
+                    font-size: 24px;
+                }
+            }
+            .check-weather-btn-wrapper{
+                .check-weather-btn{
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+}
+

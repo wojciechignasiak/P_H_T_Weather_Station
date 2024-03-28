@@ -1,0 +1,556 @@
+.readings-page{
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    padding: 125px;
+    .readings-page-content{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        .readings-header{
+            display: flex;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: flex-start;
+            vertical-align: center;
+            h1{
+                color: #fff;
+                font-size: 50px;
+                font-weight: 800;
+                margin: 24px 10px 24px 0px;
+            }
+            .city-select-control{
+                margin: 24px 0px 24px 0px;
+                .city-select{
+                    line-height: normal;
+                    color: #fff;
+                    font-weight: 800;
+                    font-size: 50px;
+                    .MuiSelect-select{
+                        padding-left: 5px;
+                        padding-top: 0px;
+                        padding-bottom: 0px;
+                        padding-right: 48px;
+                    }
+                    .MuiSelect-nativeInput{
+                        display: none;
+                    }
+                    &::before{
+                        border-color: #fff;
+                    }
+                    &::after{
+                        border-color: #fff;
+                    }
+                    &:hover{
+                        color: rgba(255, 255, 255, 0.75);
+                    }
+                    .MuiSvgIcon-root{
+                        font-size: 48px;
+                        color: #fff;
+                    }
+                }
+            }
+        }
+        .readings-dates{
+            width: 100%;
+            margin-bottom: 50px;
+            .readings-dates-form{
+                display: flex;
+                align-items: stretch;
+                justify-content: space-around;
+                height: 100%;
+                width: 100%;
+                .readings-dates-from-control{
+                    width: calc(90% / 3);
+                    .reading-date-select{
+                        .MuiInputBase-root{
+                            color: rgba($color: #fff, $alpha: 0.9);
+                            fieldset{
+                                border-color: rgba($color: #fff, $alpha: 0.75);
+                                }
+                            .MuiInputAdornment-root{
+                                button{
+                                    color: #fff;
+                                }
+                            }
+                        }
+                        label{
+                            color: #fff;
+                        }
+                    }
+                    .switch-date-btn{
+                        color: #fff;
+                        border-color: rgba($color: #fff, $alpha: 0.75);
+                        height: 100%;
+                        &:disabled{
+                            opacity: 25%;
+                        }
+                        &:hover{
+                            background-color: rgba($color: #fff, $alpha: 0.1);
+                        }
+                        &:active{
+                            border-color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .readings-container{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            .readings-card{
+                min-width: 320px;
+                max-width: 400px;
+                min-height: 320px;
+                max-height: 400px;
+                width: 100%;
+                height: 100%;
+                box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 0.55);
+                .readings-card-header{
+                    color: #000 !important;
+                    min-height: calc(0.2 * 320px);
+                    max-height: calc(0.2 * 400px);
+                    height: 100%;
+                    width: 100%;
+                    .MuiCardHeader-content{
+                        span{
+                            font-weight: 500;
+                            font-size: 24px;
+                        }
+                    }
+                }
+                .readings-card-content{
+                    min-height: calc(0.8 * 320px);
+                    max-height: calc(0.8 * 400px);
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0;
+                    .readings-card-content-body{
+                        height: 100%;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        .readings-card-value{
+                            font-weight: 200;
+                            font-size: 64px;
+                            .readings-card-unit{
+                                font-size: 38px;
+                                vertical-align: middle;
+                            }
+                        }
+                        .readings-card-missing-data{
+                            font-weight: 100;
+                            font-size: 42px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width:480px ) {
+    .readings-page{
+        padding: 10px;
+        .readings-page-content{
+            .readings-header{
+                flex-direction: column;
+                margin-bottom: 40px;
+                h1{
+                    width: 100%;
+                    margin: 10px 0px;
+                    font-size: 18px;
+                }
+                .city-select-control{
+                    width: 100%;
+                    margin: 0;
+                    .city-select{
+                        font-size: 16px;
+                        .MuiSelect-select{
+                            padding: 0;
+                        }
+                        .MuiSvgIcon-root{
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+            .readings-dates{
+                margin-bottom: 20px;
+                .readings-dates-form{
+                    flex-direction: column;
+                    .readings-dates-from-control{
+                        width: 100%;
+                        margin-bottom: 10px;
+                        &.readings-dates-button{
+                            align-items: stretch;
+                            justify-content: center;
+                            .switch-date-btn{
+                                font-size: 14px;
+                            }
+                        }
+                        .reading-date-select{
+                            .MuiInputBase-root{
+                                font-size: 14px;
+                                fieldset{
+                                        font-size: 14px;
+                                    }
+                                }
+                            label{
+                                font-size: 14px;
+                            }
+                        }
+
+                    }
+                }
+            }
+            .readings-container{
+                flex-direction: column;
+                .readings-card{
+                    margin-bottom: 20px;
+                    min-height: 0;
+                    min-width: 0;
+                    .readings-card-header{
+                        .MuiCardHeader-content{
+                            span{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .readings-card-content{
+                        min-height: 0;
+                        min-width: 0;
+                        .readings-card-content-body{
+                            padding: 0px 16px 16px 16px;
+                            min-height: 0;
+                            min-width: 0;
+                            .readings-card-value{
+                                font-size: 36px;
+                                .readings-card-unit{
+                                    font-size: 30px;
+                                    vertical-align: middle;
+                                }
+                            }
+                            .readings-card-missing-data{
+                                font-weight: 100;
+                                font-size: 36px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width:481px ) AND (max-width: 768px) {
+    .readings-page{
+        padding: 25px;
+        .readings-page-content{
+            .readings-header{
+                flex-direction: column;
+                margin-bottom: 40px;
+                h1{
+                    width: 100%;
+                    margin: 10px 0px;
+                    font-size: 24px;
+                }
+                .city-select-control{
+                    width: 100%;
+                    margin: 0;
+                    .city-select{
+                        font-size: 24px;
+                        .MuiSelect-select{
+                            padding: 0;
+                        }
+                        .MuiSvgIcon-root{
+                            font-size: 36px;
+                        }
+                    }
+                }
+            }
+            .readings-dates{
+                margin-bottom: 20px;
+                .readings-dates-form{
+                    flex-direction: column;
+                    .readings-dates-from-control{
+                        width: 100%;
+                        margin-bottom: 10px;
+                        &.readings-dates-button{
+                            align-items: stretch;
+                            justify-content: center;
+                            .switch-date-btn{
+                                font-size: 16px;
+                            }
+                        }
+                        .reading-date-select{
+                            .MuiInputBase-root{
+                                font-size: 16px;
+                                fieldset{
+                                        font-size: 16px;
+                                    }
+                                }
+                            label{
+                                font-size: 16px;
+                            }
+                        }
+
+                    }
+                }
+            }
+            .readings-container{
+                flex-direction: column;
+                .readings-card{
+                    margin-bottom: 20px;
+                    min-height: 0;
+                    min-width: 0;
+                    .readings-card-header{
+                        min-height: 0;
+                        min-width: 0;
+                        .MuiCardHeader-content{
+                            span{
+                                font-size: 22px;
+                            }
+                        }
+                    }
+                    .readings-card-content{
+                        min-height: 0;
+                        min-width: 0;
+                        .readings-card-content-body{
+                            min-height: 0;
+                            min-width: 0;
+                            padding: 0px 16px 16px 16px;
+                            .readings-card-value{
+                                font-size: 36px;
+                                .readings-card-unit{
+                                    font-size: 30px;
+                                    vertical-align: middle;
+                                }
+                            }
+                            .readings-card-missing-data{
+                                font-weight: 100;
+                                font-size: 36px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width:769px ) AND (max-width: 1024px) {
+    .readings-page{
+        padding: 50px;
+        .readings-page-content{
+            .readings-header{
+                flex-direction: column;
+                margin-bottom: 40px;
+                h1{
+                    width: 100%;
+                    margin: 10px 0px;
+                    font-size: 24px;
+                }
+                .city-select-control{
+                    width: 100%;
+                    margin: 0;
+                    .city-select{
+                        font-size: 24px;
+                        .MuiSelect-select{
+                            padding: 0;
+                        }
+                        .MuiSvgIcon-root{
+                            font-size: 36px;
+                        }
+                    }
+                }
+            }
+            .readings-dates{
+                margin-bottom: 20px;
+                .readings-dates-form{
+                    flex-direction: row;
+                    .readings-dates-from-control{
+                        width: 100%;
+                        margin: 0px 10px;
+                        margin-bottom: 10px;
+                        &.readings-dates-button{
+                            align-items: stretch;
+                            justify-content: center;
+                            .switch-date-btn{
+                                font-size: 16px;
+                            }
+                        }
+                        .reading-date-select{
+                            .MuiInputBase-root{
+                                font-size: 16px;
+                                fieldset{
+                                        font-size: 16px;
+                                    }
+                                }
+                            label{
+                                font-size: 16px;
+                            }
+                        }
+
+                    }
+                }
+            }
+            .readings-container{
+                flex-direction: column;
+                .readings-card{
+                    margin-bottom: 20px;
+                    min-height: 0;
+                    min-width: 0;
+                    .readings-card-header{
+                        min-height: 0;
+                        min-width: 0;
+                        .MuiCardHeader-content{
+                            span{
+                                font-size: 22px;
+                            }
+                        }
+                    }
+                    .readings-card-content{
+                        min-height: 0;
+                        min-width: 0;
+                        .readings-card-content-body{
+                            padding: 0px 16px 16px 16px;
+                            min-height: 0;
+                            min-width: 0;
+                            .readings-card-value{
+                                font-size: 36px;
+                                .readings-card-unit{
+                                    font-size: 30px;
+                                    vertical-align: middle;
+                                }
+                            }
+                            .readings-card-missing-data{
+                                font-weight: 100;
+                                font-size: 36px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width:1025px ) AND (max-width: 1200px) {
+    .readings-page{
+        padding: 50px;
+        .readings-page-content{
+            .readings-header{
+                margin-bottom: 40px;
+                h1{
+                    margin: 10px 10px 10px 0px;
+                    font-size: 30px;
+                }
+                .city-select-control{
+                    margin: 10px 0px;
+                    .city-select{
+                        font-size: 30px;
+                        .MuiSelect-select{
+                            padding: 0px 48px 0px 5px;
+                        }
+                        .MuiSvgIcon-root{
+                            font-size: 36px;
+                        }
+                    }
+                }
+            }
+            .readings-dates{
+                margin-bottom: 20px;
+                .readings-dates-form{
+                    flex-direction: row;
+                    .readings-dates-from-control{
+                        width: 100%;
+                        margin: 0px 10px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            .readings-container{
+                flex-direction: row;
+                .readings-card{
+                    margin: 10px;
+                    min-width: 0;
+                    .readings-card-content{
+                        .readings-card-content-body{
+                            .readings-card-value{
+                                font-size: 48px;
+                                .readings-card-unit{
+                                    font-size: 32px;
+                                }
+                            }
+                            .readings-card-missing-data{
+                                font-weight: 100;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width:1201px ) AND (max-width: 1800px) {
+    .readings-page{
+        padding: 75px;
+        .readings-page-content{
+            .readings-header{
+                margin-bottom: 40px;
+                h1{
+                    margin: 10px 10px 10px 0px;
+                    font-size: 36px;
+                }
+                .city-select-control{
+                    margin: 10px 0px;
+                    .city-select{
+                        font-size: 36px;
+                        .MuiSvgIcon-root{
+                            font-size: 36px;
+                        }
+                    }
+                }
+            }
+            .readings-dates{
+                margin-bottom: 20px;
+                .readings-dates-form{
+                    flex-direction: row;
+                    .readings-dates-from-control{
+                        width: 100%;
+                        margin: 0px 10px;
+                        margin-bottom: 10px;
+                        &.readings-dates-button{
+                            align-items: stretch;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+            .readings-container{
+                flex-direction: row;
+                .readings-card{
+                    margin: 10px;
+                    min-width: 0;
+                    .readings-card-header{
+                        .MuiCardHeader-content{
+                            span{
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                    .readings-card-content{
+                        height: 80%;
+                        .readings-card-content-body{
+                            padding: 0;
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
